@@ -1,0 +1,43 @@
+doctype html
+head
+	meta(charset='utf-8')
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	title Starflight Planets with three.js
+
+	//-
+	//- favicons
+	//-
+
+	link(rel='apple-touch-icon' sizes='180x180' href='./apple-touch-icon.png')
+	link(rel='icon' type='image/png' sizes='32x32' href='./favicon-32x32.png')
+	link(rel='icon' type='image/png' sizes='16x16' href='./favicon-16x16.png')
+	link(rel='manifest' href='./site.webmanifest')
+
+	//-
+	//- Stylesheets
+	//-
+
+	link(rel='preconnect' href='https://fonts.googleapis.com')
+	link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+	link(href='https://fonts.googleapis.com/css2?family=Koulen&display=swap' rel='stylesheet')
+	link(rel='stylesheet' href='/node_modules/@fortawesome/fontawesome-free/css/all.min.css')
+	link(rel='stylesheet' href='styles/style.scss')
+#main
+	nav.navbar.navbar-expand-lg.navbar-light.bg-light
+		.container-fluid
+			a.navbar-brand.display-font(href='#')
+				img.d-inline-block.align-middle(src='images/terrain_vehicle_32x18.png' width='32' alt='Terrain Vehicle logo')
+				img.d-inline-block.align-middle.ms-3.mt-1(src='images/reloaded.png' width='432' alt='Starflight Planets Reloaded')
+				//-|             Starflight Planets Reloaded
+			button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+				span.navbar-toggler-icon
+			#navbarSupportedContent.collapse.navbar-collapse
+				| &nbsp;
+	#overlay-container.container-fluid
+		#planet-select-row.row.h-100
+			#controlsTarget.col-8 &nbsp;
+			include ./controls.pug
+#loadingOverlay.d-flex.align-items-center
+	img.m-5(src='data-url:./images/loading_text.png' width='340' height='60')
+	img.m-5(src='data-url:./images/button_spinner.gif' width='360' height='44')
+script(type='module' src='scripts/index.js')

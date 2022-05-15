@@ -1,0 +1,94 @@
+- 
+	var iconPathBase = './assets/fontawesome/svgs/solid/'
+	var items = [
+		{
+			category: 'Lithosphere',
+			iconCodePoint: '&#xF6FC',
+			iconPath: iconPathBase + 'mountain.svg',
+			iconName: 'mountain',
+			fields: [
+				{label: 'Surface', fieldName: 'surface'},
+				{label: 'Composition', fieldName: 'lithosphere'},
+				{label: 'Mineral density', fieldName: 'mineralDensity'}
+			]
+		},
+		{
+			category: 'Atmosphere',
+			iconCodePoint: '&#xF0C2',
+			iconPath: iconPathBase + 'cloud.svg',
+			iconName: 'cloud',
+			fields: [
+				{label: 'Composition', fieldName: 'atmosphere'},
+				{label: 'Density', fieldName: 'atmosphereDensity'},
+				{label: 'Temperature', fieldName: 'temperature'},
+				{label: 'Weather', fieldName: 'weather'}
+			]
+		},
+		{
+			category: 'Hydrosphere',
+			iconCodePoint: '&#xF043',
+			iconPath: iconPathBase + 'droplet.svg',
+			iconName: 'droplet',
+			fields: [
+				{label: 'Composition', fieldName: 'hydrosphere'}
+			]
+		},
+		{
+			category: 'Biosphere',
+			iconCodePoint: '&#xF06C',
+			iconPath: iconPathBase + 'leaf.svg',
+			iconName: 'leaf',
+			fields: [
+				{label: 'Density', fieldName: 'biodensity'}
+			]
+		},
+		{
+			category: 'Size',
+			iconCodePoint: '&#xF5CD',
+			iconPath: iconPathBase + 'weight-scale.svg',
+			iconName: 'weight-scale',
+			fields: [
+				{label: 'Mass', fieldName: 'mass'},
+				{label: 'Gravity', fieldName: 'gravity'}
+			]
+		}
+	]
+
+#planetData.m-3
+	h5#planetDataName.planet-data-field(data-field-name='name') Planet M21586-III
+	ul#planetDataTabs.nav.nav-tabs(role='tablist')
+		each item, index in items
+			li.nav-item
+				- var safeName = (item.category.charAt(0).toLowerCase() + item.category.slice(1)).replace(/\W/g,'')
+				- var tabId = safeName + 'Tab'
+				- var panelId = safeName + 'Panel'
+				- var active = (index == 0)
+				button.nav-link.planet-tab-button(
+					id=tabId 
+					class=active ? 'active' : '' 
+					data-bs-toggle='tab' 
+					data-bs-target='#' + panelId 
+					type='button' 
+					role='tab' 
+					aria-controls=panelId 
+					aria-selected=active ? 'true' : 'false'
+					title=item.category
+				)
+					//- span.fa-solid!= item.iconCodePoint
+					span.fa-solid(class=`fa-${item.iconName}`)
+	.tab-content
+		each item, index in items
+			- var tabId = item.category.toLowerCase() + 'Tab'
+			- var panelId = item.category.toLowerCase() + 'Panel'
+			- var active = (index == 0)
+			div.tab-pane(id=panelId class=active ? 'active' : '' role='tabpanel' aria-labelledby=tabId tabindex=index)
+				table.table
+					thead
+						tr
+							th(colspan='2')= item.category
+					tbody
+						each field, index in item.fields 
+							tr
+								td= field.label
+								td.planet-data-field(data-field-name=field.fieldName) &hellip;
+						

@@ -1,0 +1,107 @@
+-
+	const phi = (1 + Math.sqrt(5)) / 2
+	const svgHeight = 12
+	const starRadius = svgHeight / 2
+	const starCenter = [
+		starRadius, 
+		svgHeight / 2
+	]
+	const planetRadius = starRadius / phi
+	const firstPlanetOffset = starRadius * 2 + planetRadius * phi
+	const planetStep = planetRadius + planetRadius * phi;
+	const svgWidth = starRadius * 2 + (planetRadius + planetRadius * phi) * 8
+	const starColors = new Map([
+		['a', '#55ff55'],
+		['b', '#55ffff'],
+		['f', '#ffffff'],
+		['g', '#ffff55'],
+		['k', '#ffa255'],
+		['m', '#aa0000'],
+		['o', '#5555ff']
+	])
+	const planetColors = new Map([
+		['frozen', '#ffffff'],
+		['gas-giant', '#aa00aa'],
+		['molten', '#aa0000'],
+		['liquid', '#0000aa'],
+		['rock', '#aa5500']
+	])
+
+mixin starSystemIcons(system, orbitPosition = 0)
+	svg(height=svgHeight width=svgWidth)
+		-
+			var filled = (orbitPosition === 0)
+		circle(
+			cx=starCenter[0] 
+			cy=starCenter[1] 
+			r=starRadius 
+			fill=filled ? starColors.get(system.class.toLowerCase()) : 'rgba(0, 0, 0, 0)' 
+			stroke=!filled ? starColors.get(system.class.toLowerCase()) : ''
+			strokewidth=!filled ? 0 : 2
+			stroke-dasharray=!filled ? '2,2' : none
+		)
+		each ix in [1, 2, 3, 4, 5, 6, 7, 8]
+			-
+				var color = 'rgba(0, 0, 0, 0)'
+				var planet = system.planets.find((p) => p.orbitPosition === ix)
+				var surface = planet ? planet.surface.toLowerCase().replace(' ', '-') : '';
+				if(planetColors.has(surface)) {
+					color = planetColors.get(surface)
+				}
+				var filled = orbitPosition === 0 || !(planet) || planet.orbitPosition === orbitPosition
+			circle(
+				cx=firstPlanetOffset + (ix - 1) * planetStep
+				cy=starCenter[1] 
+				r=planetRadius 
+				fill=filled ? color : 'rgba(0, 0, 0, 0)'
+				stroke=planet ? color : 'rgba(255, 255, 255, 0.05)'
+				strokewidth=(planet && !filled) ? 2 : 0
+				stroke-dasharray=!filled ? '2,2' : none
+			)
+
+mixin starSystemInfo(system, orbitPosition = 0)
+	div
+		+starSystemIcons(system, orbitPosition)
+		div.system-class #{system.class}
+		div.system-coords #{system.systemX},&nbsp;#{system.systemY}
+
+mixin planetInfo(system, orbitPosition = 0)
+	div
+		-
+			var planet = system.planets.find((p) => p.orbitPosition === orbitPosition)
+		+starSystemIcons(system, orbitPosition)
+		div.planet-orbit-position #{planet.orbitPosition}
+		div.planet-surface #{planet.surface}
+
+
+form.starSelector.accordion-body
+	div.row
+		label.form-label.col-4(for='starDropDown') Star system
+		div.col-8.dropdown
+			button#starSystemDropDownButton.btn.btn-secondary.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+				+starSystemInfo(systemsPlanets[0])
+			ul#starSystemDropDownMenu.dropdown-menu.dropdown-menu-dark(aria-labelledby='starSystemDropDownButton')
+				each system in systemsPlanets
+					li 
+						-
+							var classList = []
+							if (system.systemKey === systemsPlanets[0].systemKey) {
+								classList.push( 'active' )
+							}
+						a.dropdown-item(class=classList href='#' class=system.planets.length == 0 ? 'disabled' : '' data-system-key=system.systemKey)
+							+starSystemInfo(system)
+	div.row.mt-1
+		label.form-label.col-4(for='planetDropDown') Planet
+		div.col-8.dropdown
+			button#planetDropDownButton.btn.btn-secondary.dropdown-toggle(type='button' data-bs-toggle="dropdown" aria-expanded='false')
+				+planetInfo(systemsPlanets[0], systemsPlanets[0].planets[0].orbitPosition)
+			ul#planetDropDownMenu.dropdown-menu.dropdown-menu-dark(aria-labelledby="planetDropDownButton")
+				each planet in systemsPlanets[0].planets
+					li 
+						a.dropdown-item(
+							href='#' 
+							class=systemsPlanets[0].planets.length == 0 ? 'disabled' : '' 
+							data-system-key=planet.systemKey 
+							data-orbit-position=planet.orbitPosition
+						)
+							+planetInfo(systemsPlanets[0], planet.orbitPosition)

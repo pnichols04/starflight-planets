@@ -1,0 +1,192 @@
+[
+  {
+    "systemX": 125,
+    "systemY": 100,
+    "systemKey": 125100000,
+    "planetCount": 5,
+    "orbitMask": "0x75",
+    "flareDate": 300,
+    "mass": 5,
+    "exponent": 24,
+    "oldSolMass": 1.25,
+    "gravity": 83,
+    "class": "G",
+    "cluster": 9,
+    "planets": [
+      {
+        "systemX": 125,
+        "systemY": 100,
+        "systemKey": 125100000,
+        "orbitSequence": 1,
+        "orbitPosition": 1,
+        "starClass": "G",
+        "mass": 200000000000000000000,
+        "biodensity": 0,
+        "mineralDensity": 0.23,
+        "atmosphere": [
+          "Chlorine",
+          "Fluorine"
+        ],
+        "atmosphereDensity": "Very Thin",
+        "hydrosphere": [
+          "Water"
+        ],
+        "lithosphere": [
+          "Chromium",
+          "Tungsten",
+          "Promethium"
+        ],
+        "surface": "Rock",
+        "gravity": 0.04,
+        "temperature": [
+          "Searing",
+          "Inferno"
+        ],
+        "weather": "None",
+        "imageIndex": 95,
+        "notes": "Rock (small)",
+        "topoColors": [
+          1,
+          14,
+          6,
+          6,
+          6,
+          8,
+          8,
+          15
+        ],
+        "radius": 5
+      },
+      {
+        "systemX": 125,
+        "systemY": 100,
+        "systemKey": 125100000,
+        "orbitSequence": 2,
+        "orbitPosition": 5,
+        "starClass": "G",
+        "mass": 1e+22,
+        "biodensity": 0.07,
+        "mineralDensity": 0.15,
+        "atmosphere": [
+          "Methane",
+          "Ammonia",
+          "Argon"
+        ],
+        "atmosphereDensity": "Thin",
+        "hydrosphere": [
+          "Water"
+        ],
+        "lithosphere": [
+          "Plutonium",
+          "Zinc"
+        ],
+        "surface": "Frozen",
+        "gravity": 1.8,
+        "temperature": [
+          "Sub-Arctic",
+          "Temperate"
+        ],
+        "weather": "Moderate",
+        "imageIndex": 94,
+        "notes": "IGNORE THIS ONE",
+        "topoColors": [
+          1,
+          14,
+          6,
+          6,
+          6,
+          8,
+          8,
+          15
+        ],
+        "radius": 11
+      },
+      {
+        "systemX": 125,
+        "systemY": 100,
+        "systemKey": 125100000,
+        "orbitSequence": 3,
+        "orbitPosition": 6,
+        "starClass": "G",
+        "mass": 3e+22,
+        "biodensity": 0,
+        "mineralDensity": 0.04,
+        "atmosphere": [
+          "Ammonia Compounds"
+        ],
+        "atmosphereDensity": "Thick",
+        "hydrosphere": [
+          "None"
+        ],
+        "lithosphere": [
+          "Aluminum",
+          "Tungsten",
+          "Copper"
+        ],
+        "surface": "Frozen",
+        "gravity": 5.22,
+        "temperature": [
+          "Sub-Arctic",
+          "Arctic"
+        ],
+        "weather": "Very Violent",
+        "imageIndex": 93,
+        "notes": "(125, 100) #3 (Ancient/Recent Ruins)",
+        "topoColors": [
+          1,
+          7,
+          9,
+          5,
+          11,
+          11,
+          15,
+          15
+        ],
+        "radius": 19
+      },
+      {
+        "systemX": 125,
+        "systemY": 100,
+        "systemKey": 125100000,
+        "orbitSequence": 4,
+        "orbitPosition": 7,
+        "starClass": "G",
+        "mass": 4e+22,
+        "biodensity": 0,
+        "mineralDensity": 0.43,
+        "atmosphere": [
+          "Hydrogen",
+          "Helium"
+        ],
+        "atmosphereDensity": "Very Thin",
+        "hydrosphere": [
+          "Carbon Monoxide"
+        ],
+        "lithosphere": [
+          "Lead",
+          "Gold",
+          "Tin"
+        ],
+        "surface": "Frozen",
+        "gravity": 1.08,
+        "temperature": [
+          "Sub-Arctic"
+        ],
+        "weather": "None",
+        "imageIndex": 92,
+        "notes": "Frozen (huge)",
+        "topoColors": [
+          1,
+          7,
+          9,
+          5,
+          11,
+          11,
+          15,
+          15
+        ],
+        "radius": 39
+      }
+    ]
+  }
+]

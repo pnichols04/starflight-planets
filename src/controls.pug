@@ -1,0 +1,25 @@
+- var items = [
+-  {label: 'Navigation', include: './starSelector.pug'},
+-  {label: 'Planet data', include: './planetData.pug' }
+-]
+
+mixin accordionItem(label, show)
+  - var identifier = label.split(/\W/g).map((s, i) => (i === 0 ? s.charAt(0).toLowerCase() : s.charAt(0).toUpperCase()) + s.slice(1)).join('')
+  - var headerId = identifier + 'AccordionHeader'
+  - var contentId = identifier + 'AccordionContent'
+  .accordion-item
+    h2.accordion-header(id=headerId)
+    button.accordion-button(type='button' class=show ? '' : 'collapsed' data-bs-toggle='collapse' data-bs-target='#' + contentId aria-expanded= show ? 'true' : 'false' aria-controls=contentId)
+      | #{label}
+    div.accordion-collapse.collapse(id=contentId class=show ? 'show' : '' aria-labelledby=headerId data-bs-parent='#controls')
+      if block
+        block
+      else 
+        .alert.alert-secondary.m-3 No content provided
+
+#controls.col-4.ps-0.h-100.accordion 
+  +accordionItem('Navigation', true)
+    include ./starSelector.pug
+  +accordionItem('Planet data', false)
+    include ./planetData.pug
+  +accordionItem('Terrain generation', false)

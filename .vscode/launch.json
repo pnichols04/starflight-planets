@@ -1,0 +1,35 @@
+{
+	"configurations": [
+		{
+			"type": "pwa-msedge",
+			"name": "Launch Microsoft Edge",
+			"request": "launch",
+			"runtimeArgs": [
+				"--remote-debugging-port=9222",
+				"--user-data-dir=remote-debug-profile"
+			],
+			"url": "http://localhost:1234",
+			"presentation": {
+				"hidden": true
+			}
+		},
+		{
+			"type": "pwa-msedge",
+			"name": "Open Edge DevTools",
+			"request": "attach",
+			"presentation": {
+				"hidden": true
+			},
+			"port": 9222
+		}
+	],
+	"compounds": [
+		{
+			"name": "Launch Edge and attach DevTools",
+			"configurations": [
+				"Launch Microsoft Edge",
+				"Open Edge DevTools"
+			]
+		}
+	]
+}

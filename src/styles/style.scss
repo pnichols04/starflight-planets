@@ -1,0 +1,85 @@
+@import "~bootswatch/dist/cyborg/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/cyborg/bootswatch";
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  user-select: none;
+  overflow: hidden;
+	background-color: #010107;
+}
+
+#main {
+  position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+  > canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    background-color: #010107;
+  }
+}
+
+.smallcaps {
+	font-variant: small-caps;
+}
+
+.starSelector .form-label {
+	margin-top: 7px;
+}
+
+#loadingOverlay {
+	background-color: #010107;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 5000;
+}
+
+.display-font {
+  font-family: Koulen, Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+#controls, #controlsTarget {
+	z-index: 100;
+}
+
+#starSystemDropDownButton, #planetDropDownButton,
+#starSystemDropDownMenu, #planetDropDownMenu {
+	width: 94%;
+}
+
+#starSystemDropDownMenu {
+	max-height: 61.8vh;
+	overflow-y: scroll;
+}
+
+#starSystemDropDownButton, #planetDropDownButton,
+#starSystemDropDownMenu li > a, #planetDropDownMenu li > a {
+	> div {
+		@extend .d-inline-flex;
+		@extend .justify-content-start;
+		@extend .align-items-baseline;
+		width: 94%;
+		> svg, > div {
+			@extend .d-inline-block;
+			min-width: 1rem;
+		}
+		> svg:not(:first-child), > div:not(:first-child) {
+			@extend .ms-2;
+		}
+		> svg:not(:last-child), > div:not(:last-child) {
+			@extend .me-2;
+		}
+	}
+}
